@@ -21,6 +21,8 @@ public class EmployeeServiceImplement implements EmployeeService {
     public EmployeeServiceImplement() {
         empMap.put(1, new Employee(1, "duy", "a@gmail.com", "ha noi"));
         empMap.put(2, new Employee(2, "beo", "b@gmail.com", "da nang"));
+        empMap.put(3, new Employee(5, "chigga", "c@gmail.com", "trung quoc"));
+
     }
 
     @Override
@@ -35,7 +37,12 @@ public class EmployeeServiceImplement implements EmployeeService {
 
     @Override
     public Employee findByID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for (Employee em : empMap.values()) {
+            if (em.getId() == id) {
+                return em;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -47,10 +54,10 @@ public class EmployeeServiceImplement implements EmployeeService {
     public void remove(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public static void main(String[] args) {
         EmployeeServiceImplement emp = new EmployeeServiceImplement();
-        emp.findAll().forEach(e -> System.out.println(e));
+        System.out.println(emp.findByID(5).getName());
     }
 
 }

@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Employee List</title>
     </head>
     <body>
         <h1>Employees List</h1>
@@ -29,8 +29,13 @@
                     <td>${employee.name}</td>
                     <td>${employee.email}</td>
                     <td>${employee.address}</td>
+                    <td>
+                        <!-- this line create a hyper to navigate user to the edit page of the specific employee -->
+                        <a href="empservlet? action=edit & id=${employee.id}">Edit</a>
+                    </td>
                 </tr>
             </c:forEach>
+
         </table>
     </body>
 </html>
