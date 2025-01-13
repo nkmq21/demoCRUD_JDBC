@@ -19,8 +19,8 @@ public class EmployeeServiceImplement implements EmployeeService {
     private Map<Integer, Employee> empMap = new HashMap<>();
 
     public EmployeeServiceImplement() {
-        empMap.put(1, new Employee(1, "duy", "nigga", "black balls"));
-        empMap.put(2, new Employee(1, "pik", "nigga", "black balls"));
+        empMap.put(1, new Employee(1, "duy", "a@gmail.com", "ha noi"));
+        empMap.put(2, new Employee(2, "beo", "b@gmail.com", "da nang"));
     }
 
     @Override
@@ -46,6 +46,11 @@ public class EmployeeServiceImplement implements EmployeeService {
     @Override
     public void remove(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public static void main(String[] args) {
+        EmployeeServiceImplement emp = new EmployeeServiceImplement();
+        emp.findAll().forEach(e -> System.out.println(e));
     }
 
 }

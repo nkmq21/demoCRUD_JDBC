@@ -4,6 +4,7 @@
  */
 package controller;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Employee;
 import service.EmployeeService;
 import service.EmployeeServiceImplement;
 
@@ -20,7 +23,9 @@ import service.EmployeeServiceImplement;
  */
 @WebServlet(name = "EmployeeServlet", urlPatterns = {"/empservlet"})
 public class EmployeeServlet extends HttpServlet {
+
     private EmployeeService empService = new EmployeeServiceImplement();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -59,7 +64,23 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "create":
+                break;
+
+            case "edit":
+                break;
+
+            case "delete":
+                break;
+            default:
+                listEmployees(request, response);
+                break;
+        }
     }
 
     /**
@@ -86,4 +107,13 @@ public class EmployeeServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void listEmployees(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Employee> empList = empService.findAll();
+        request.setAttribute("employeeList", empList);
+        RequestDispatcher rd = request.getRequestDispatcher("/employee/empList.jsp");
+        rd.forward(request, response);
+    }
+    
+    
+   
 }
