@@ -19,8 +19,10 @@
         <a href="employee/empInsert.jsp">
             <button type="button">Add new employee</button>
         </a>
-
-
+        
+        <a href="employee/empRemove.jsp">
+            <button type="button">Remove employee</button>
+        </a>
 
         <br>
 

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +15,15 @@
     </head>
     <body>
         <h1>Insert new employee</h1>
+        
+    <c:if test="${not empty duplicateError}">
+        <div style="color: red;">
+            <strong>
+                <c:out value="${duplicateError}"/>
+            </strong>
+        </div>
+    </c:if>
+        
         <form action="${pageContext.request.contextPath}/empservlet?action=insert" method="post">
             <label for="userID" >User ID: </label>
             <input type="number" id="userID" name="userID">

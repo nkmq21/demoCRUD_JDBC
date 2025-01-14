@@ -75,7 +75,7 @@ public class EmployeeServlet extends HttpServlet {
 
             case "delete":
                 break;
-                
+
             default:
                 listEmployees(request, response);
                 break;
@@ -99,6 +99,9 @@ public class EmployeeServlet extends HttpServlet {
         }
         if ("insert".equals(action)) {
             empInsert(request, response);
+        }
+        if ("remove".equals(action)) {
+            empRemove(request, response);
         }
     }
 
@@ -147,13 +150,26 @@ public class EmployeeServlet extends HttpServlet {
         String address = request.getParameter("userAddress");
 
         if (empService.existID(id)) {
-            request.setAttribute("duplicate error", "This employe with this ID has been registered");
+            request.setAttribute("duplicateError", "The employe with this ID has been registered");
             RequestDispatcher rd = request.getRequestDispatcher("employee/empInsert.jsp");
             rd.forward(request, response);
         } else {
             Employee newEmployee = new Employee(id, name, email, address);
             empService.save(newEmployee);
             response.sendRedirect("empservlet");
+        }
+    }
+
+    private void empRemove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("userID"));
+
+        if (empService.existID(id)) {
+            empService.remove(id);
+            response.sendRedirect("empservlet");
+        } else {
+            request.setAttribute("errorMes", "Employee Not Found");
+            RequestDispatcher rd = request.getRequestDispatcher("employee/empRemove.jsp");
+            rd.forward(request, response);
         }
     }
 
