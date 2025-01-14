@@ -15,6 +15,15 @@
     </head>
     <body>
         <h1>Employees List</h1>
+
+        <a href="employee/empInsert.jsp">
+            <button type="button">Add new employee</button>
+        </a>
+
+
+
+        <br>
+
         <table border = "1">
             <tr>
                 <td>ID</td>
@@ -35,6 +44,7 @@
                     </td>
                 </tr>
             </c:forEach>
+
 
         </table>
     </body>

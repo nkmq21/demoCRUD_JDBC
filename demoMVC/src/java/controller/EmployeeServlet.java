@@ -69,7 +69,8 @@ public class EmployeeServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "create":
+            case "insert":
+                empInsert(request, response);
                 break;
 
             case "edit":
@@ -125,32 +126,35 @@ public class EmployeeServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/employee/empEdit.jsp");
         rd.forward(request, response);
     }
-    
+
     private void empUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userID"));
         String name = request.getParameter("userName");
         String email = request.getParameter("userEmail");
         String address = request.getParameter("userAddress");
-        
+
         Employee updatedEmployee = new Employee(id, name, email, address);
-        
+
         empService.update(id, updatedEmployee);
-        
+
         listEmployees(request, response);
-    } 
-    
+    }
+
     private void empInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userID"));
         String name = request.getParameter("userName");
         String email = request.getParameter("userEmail");
         String address = request.getParameter("userAddress");
-        
-        
-        
-        Employee newEmployee = new Employee(id, name, email, address);
-        
-        
-        
+
+        if (empService.existID(id)) {
+            request.setAttribute("duplicate error", "This employe with this ID has been registered");
+            listEmployees(request, response);
+        } else {
+            Employee newEmployee = new Employee(id, name, email, address);
+            empService.save(newEmployee);
+            response.sendRedirect("empservlet");
+        }
     }
+    
 
 }

@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Insert new employee</h1>
-        <form action="empservlet?action=insert" method="post">
+        <form action="${pageContext.request.contextPath}/empservlet?action=insert" method="get">
             <label for="userID" >User ID: </label>
             <input type="number" id="userID" name="userID">
             <br>
@@ -30,7 +30,7 @@
             <input type="text" id="userAddress" name="userAddress">
             <br>
 
-            <button type="submit" value="Save">Save user profile</button>
+            <button type="submit" value="Add">Add</button>
         </form>
     </body>
 </html>

@@ -33,7 +33,7 @@ public class EmployeeServiceImplement implements EmployeeService {
 
     @Override
     public void save(Employee emp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        empMap.put(emp.getId(), emp);
     }
 
     @Override
@@ -55,6 +55,11 @@ public class EmployeeServiceImplement implements EmployeeService {
     public void remove(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public boolean existID(int id) {
+        return empMap.containsKey(id);
+    }
 
     public static void main(String[] args) {
         EmployeeServiceImplement emp = new EmployeeServiceImplement();
@@ -63,5 +68,7 @@ public class EmployeeServiceImplement implements EmployeeService {
             System.out.println("id: " + entry.getKey() + "value: " + entry.getValue().getName());
         }
     }
+
+    
 
 }
