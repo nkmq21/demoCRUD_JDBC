@@ -14,6 +14,7 @@
     </head>
     <body>
         <h1>Employee update</h1>
+        
         <c:if test="${not empty employee}">
             <form action="empservlet?action=update" method="get">
                 <label for="userID" >User ID: </label>
@@ -32,7 +33,7 @@
                 <input type="text" id="userAddress" name="userAddress" value="nigga">
                 <br>
 
-                <button type="submit">Save user profile</button>
+                <button type="submit" value="Save">Save user profile</button>
             </form>
         </c:if>
 

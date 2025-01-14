@@ -31,7 +31,7 @@
                     <td>${employee.address}</td>
                     <td>
                         <!-- this line create a hyper to navigate user to the edit page of the specific employee -->
-                        <a href="empservlet? action=edit & id=${employee.id}">Edit</a>
+                        <a href="empservlet?action=edit&id=${employee.id}">Edit</a>
                     </td>
                 </tr>
             </c:forEach>

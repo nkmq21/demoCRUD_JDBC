@@ -73,11 +73,7 @@ public class EmployeeServlet extends HttpServlet {
                 break;
 
             case "edit":
-                int id = Integer.parseInt(request.getParameter("id"));
-                Employee em = empService.findByID(id);
-                request.setAttribute("employee", em);
-                RequestDispatcher rd = request.getRequestDispatcher("/employee/empEdit.jsp");
-                rd.forward(request, response);
+                empEdit(request, response);
                 break;
 
             case "delete":
@@ -119,9 +115,12 @@ public class EmployeeServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    
     private void empEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        int id = Integer.parseInt(request.getParameter("id"));
+        Employee em = empService.findByID(id);
+        request.setAttribute("employee", em);
+        RequestDispatcher rd = request.getRequestDispatcher("/employee/empEdit.jsp");
+        rd.forward(request, response);
     }
-   
+
 }
