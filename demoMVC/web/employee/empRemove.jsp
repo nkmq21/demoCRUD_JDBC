@@ -1,6 +1,6 @@
 <%-- 
-    Document   : empInsert
-    Created on : Jan 14, 2025, 11:34:51 AM
+    Document   : empRemove
+    Created on : Jan 14, 2025, 6:25:36 PM
     Author     : nkmq21
 --%>
 
@@ -9,10 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert Page</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Insert new employee</h1>
         <form action="${pageContext.request.contextPath}/empservlet?action=insert" method="post">
             <label for="userID" >User ID: </label>
             <input type="number" id="userID" name="userID">

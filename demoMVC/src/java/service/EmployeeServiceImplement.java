@@ -53,7 +53,7 @@ public class EmployeeServiceImplement implements EmployeeService {
 
     @Override
     public void remove(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        empMap.remove(id);
     }
     
     @Override

@@ -69,16 +69,13 @@ public class EmployeeServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "insert":
-                empInsert(request, response);
-                break;
-
             case "edit":
                 empEditBtn(request, response);
                 break;
 
             case "delete":
                 break;
+                
             default:
                 listEmployees(request, response);
                 break;
@@ -99,6 +96,9 @@ public class EmployeeServlet extends HttpServlet {
         String action = request.getParameter("action");
         if ("update".equals(action)) {
             empUpdate(request, response);
+        }
+        if ("insert".equals(action)) {
+            empInsert(request, response);
         }
     }
 
@@ -148,13 +148,13 @@ public class EmployeeServlet extends HttpServlet {
 
         if (empService.existID(id)) {
             request.setAttribute("duplicate error", "This employe with this ID has been registered");
-            listEmployees(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher("employee/empInsert.jsp");
+            rd.forward(request, response);
         } else {
             Employee newEmployee = new Employee(id, name, email, address);
             empService.save(newEmployee);
             response.sendRedirect("empservlet");
         }
     }
-    
 
 }
