@@ -73,9 +73,6 @@ public class EmployeeServlet extends HttpServlet {
                 empEditBtn(request, response);
                 break;
 
-            case "delete":
-                break;
-
             default:
                 listEmployees(request, response);
                 break;
