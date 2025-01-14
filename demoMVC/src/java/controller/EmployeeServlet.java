@@ -73,7 +73,7 @@ public class EmployeeServlet extends HttpServlet {
                 break;
 
             case "edit":
-                empEdit(request, response);
+                empEditBtn(request, response);
                 break;
 
             case "delete":
@@ -95,7 +95,10 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String action = request.getParameter("action");
+        if ("update".equals(action)) {
+            empUpdate(request, response);
+        }
     }
 
     /**
@@ -115,12 +118,39 @@ public class EmployeeServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void empEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void empEditBtn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Employee em = empService.findByID(id);
         request.setAttribute("employee", em);
         RequestDispatcher rd = request.getRequestDispatcher("/employee/empEdit.jsp");
         rd.forward(request, response);
+    }
+    
+    private void empUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("userID"));
+        String name = request.getParameter("userName");
+        String email = request.getParameter("userEmail");
+        String address = request.getParameter("userAddress");
+        
+        Employee updatedEmployee = new Employee(id, name, email, address);
+        
+        empService.update(id, updatedEmployee);
+        
+        listEmployees(request, response);
+    } 
+    
+    private void empInsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("userID"));
+        String name = request.getParameter("userName");
+        String email = request.getParameter("userEmail");
+        String address = request.getParameter("userAddress");
+        
+        
+        
+        Employee newEmployee = new Employee(id, name, email, address);
+        
+        
+        
     }
 
 }

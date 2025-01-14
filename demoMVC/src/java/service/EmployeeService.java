@@ -17,5 +17,4 @@ public interface EmployeeService {
     Employee findByID(int id);
     void update(int id, Employee emp);
     void remove(int id);
-    
 }

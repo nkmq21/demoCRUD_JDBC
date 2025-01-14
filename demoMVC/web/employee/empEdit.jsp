@@ -16,9 +16,9 @@
         <h1>Employee update</h1>
         
         <c:if test="${not empty employee}">
-            <form action="empservlet?action=update" method="get">
+            <form action="empservlet?action=update" method="post">
                 <label for="userID" >User ID: </label>
-                <input type="number" id="userID" name="userID" value="${employee.id}"/>
+                <input type="number" id="userID" name="userID" value="${employee.id}">
                 <br>
 
                 <label for="userName" >Username </label>
@@ -26,11 +26,11 @@
                 <br>
 
                 <label for="userEmail" >User email: </label>
-                <input type="email" id="userEmail" name="userEmail" value="nigga">
+                <input type="email" id="userEmail" name="userEmail" value="${employee.email}">
                 <br>
 
                 <label for="userAddress" >User address: </label>
-                <input type="text" id="userAddress" name="userAddress" value="nigga">
+                <input type="text" id="userAddress" name="userAddress" value="${employee.address}">
                 <br>
 
                 <button type="submit" value="Save">Save user profile</button>
